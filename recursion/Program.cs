@@ -11,6 +11,7 @@ namespace recursion
     internal class Program
     {
         public static int fibonachi(int index)
+        //the fibbonachi number at the specified index
         {
             if (index==1)
             {
@@ -22,7 +23,9 @@ namespace recursion
             }
             return fibonachi(index -2)+fibonachi(index -1);
         }
-        public static int Sum(int n) {
+        public static int Sum(int n)
+        // sum of all the numbers up to (and including) n
+        {
             if (n==0)
             {
                 return 0;
@@ -30,6 +33,7 @@ namespace recursion
             return n+Sum((n-1));
         }
         public static int digitSum(int n)
+        // the sum of n's digits
         {
             if (n < 10)
             {
@@ -43,6 +47,7 @@ namespace recursion
             }
         }
         public static int Factorial(int n)
+        //factorail of n
         {
             if (n==0)
             {
@@ -51,6 +56,7 @@ namespace recursion
             return n*Factorial((n-1));
         }
         public static int Factorial2(int n)
+        //non-recursive solution to a factorial
         {
             int z=0;
             for (int i = 0; i < n; i++)
@@ -60,6 +66,7 @@ namespace recursion
             return z;
         }
         public static int DigitCount(int n)
+        // count the amount of digits in an integer
         {
             if (n==0)
             {
@@ -68,6 +75,7 @@ namespace recursion
             return 1+DigitCount((n/10));
         }
         public static void print(int n)
+        //print  a triangle (in descending amounts of stars)
         {
             if (n > 0)
             {
@@ -81,6 +89,7 @@ namespace recursion
             }
         }
         public static int recXpowY(int x,int y)
+        // x to the power of y
         {
             if (y==0)
             {
@@ -90,6 +99,7 @@ namespace recursion
         }
 
         public static bool isDevisible(int x,int y)
+        // is y devisible by x
         {
             if (x > y && y == 0)
             {
@@ -102,6 +112,7 @@ namespace recursion
                 return isDevisible(x, y - x);
         }
         public static bool isPrime(int x)
+        // is x a prime
         {
             if (x == 2 || x == 3)
             {
@@ -114,18 +125,69 @@ namespace recursion
                 return true;
         }
         public static void fillArray(int[] arr,int i)
+        //input values into the array (i has to be given the value of 0 in the main method)
         {
-            if (i==arr.Length)
+            if (i<arr.Length)
             {
                 Console.WriteLine("input a value");
                 arr[i]= int.Parse(Console.ReadLine());
+                fillArray(arr, i + 1);
             }
-            fillArray(arr,i+1);
         }
+        public static void printArray(int[] arr,int i)
+        //print an array (i has to be given the value of 0 in the main method)
+        {
+            if (i<arr.Length)
+            {
+                Console.WriteLine(arr[i]);
+                printArray(arr, i + 1);
+            }
+        }
+        public static int findIndex(int[] arr, int i, int index)
+        //returns the index of the element index in the array arr (i has to be given the value of 0 in the main method)
+        {
+            if (i < arr.Length)
+            {
+                if (arr[i] == index)
+                {
+                    return i;
+                }
+                if (arr[i] != index && i + 1 == arr.Length)
+                {
+                    return -1;
+                }
+            }
+                return findIndex(arr, i + 1, index);
+        }
+        public static int sumOfArray(int[] arr, int i, int sum)
+        //returns the sum of the arrays elements (i and sum have to be given the value of 0 in the main method)
+        {
+            if (i<arr.Length)
+            {
+                sum += arr[i];
+                return  sumOfArray(arr, i + 1, sum);
+            }
+            return sum;
+        }
+        public static int minimalElement(int[] arr, int i = 0, int min = int.MaxValue)
+        {
+            if (i < arr.Length)
+            {
+                if (arr[i] < min)
+                {
+                    min = arr[i];
+                }
+                return minimalElement(arr, i + 1, min);
+            }
+            return min;
+        }
+
 
 
         static void Main(string[] args)
         {
+            int i =0;
+            int sum = 0;
             //int n = Sum(10);
             //int z = Factorial(3);
             //int y = Factorial2(3);
@@ -134,16 +196,19 @@ namespace recursion
             //int t = recXpowY(3,5);
             //bool u = isDevisible(3,15);
             //int o = digitSum(15);
+            //int a = findIndex(new int[] { 1, 2, 3, 4, }, i, 3);
+            int b = sumOfArray(new int[] { 1, 2, 3,},i,sum);
             //Console.WriteLine(n);
             //Console.WriteLine(z);
             //Console.WriteLine(y);
             //Console.WriteLine(x);
             //Console.WriteLine(w);
-            //print(100);
+            //print(5);
             //Console.WriteLine(t);
             //Console.WriteLine(u);
             //Console.WriteLine(o);
-
+            //Console.WriteLine(a);
+            Console.WriteLine(b);
             Console.ReadKey();
 
 
