@@ -234,6 +234,70 @@ namespace recursion
             }
             return isSorted(arr, i+1);
         }
+        public static double avarage(double a,double b)
+        //a recrsive algorithm that returns the avarage of two numbers
+        {
+            if (a>=b)
+            {
+                return (a + b) / 2.0;
+            }
+            double t1 = avarage(a + 2, b - 1);
+            double t2 = avarage(a + 1, b - 2);
+            return avarage(t1, t2);
+        }
+
+        public static bool isAllOdd(int n)
+        //returns true of all the digits of a positive integer n are odd
+        {
+            if (n<10)
+            {
+                return true;
+            }
+            if (n%2!=0&&(n/10)%2==0)
+            {
+                return false;
+            }
+            return isAllOdd(n/10);
+        }
+        public static bool isAllEven(int n)
+        //returns true of all the digits of a positive integer n are even
+        {
+            if (n < 10)
+            {
+                return true;
+            }
+            if (n % 2 == 0 && (n / 10) % 2 != 0)
+            {
+                return false;
+            }
+            return isAllOdd(n / 10);
+        }
+        public static bool isAllOddOrEven(int n)
+        //combines the two recursive algorithems above.
+        {
+            if (isAllOdd(n)==true || isAllEven(n)==true)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool isAllOddOrEvenV2(int n)
+        //a recursive algorithm that returns true if the digits of a positive integer n are either all odd or all even
+        {
+            if (n<10)
+            {
+                return true;
+            }
+            if (n % 2 == 0 && (n / 10) % 2 != 0)
+            {
+                return false;
+            }
+            if (n % 2 != 0 && (n / 10) % 2 == 0)
+            {
+                return false;
+            }
+            return isAllOddOrEvenV2(n/10);
+        }
 
 
 
